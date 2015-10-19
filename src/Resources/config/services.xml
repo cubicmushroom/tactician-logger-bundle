@@ -1,16 +1,38 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <services>
-        <service id="tactician_logger.example" class="League\Tactician\Bundle\TacticianLoggerBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
+  <parameters>
+    <parameter key="tactician.middleware.logger.level.command_received">debug</parameter>
+    <parameter key="tactician.middleware.logger.level.command_handled">debug</parameter>
+    <parameter key="tactician.middleware.logger.level.command_failed">error</parameter>
+  </parameters>
+
+  <services>
+
+    <!-- tactician.logger.formatter.class_name -->
+    <service id="tactician.logger.formatter"
+             alias="tactician.logger.formatter.class_properties"/>
+
+    <!-- tactician.logger.formatter.class_name -->
+    <service id="tactician.logger.formatter.class_name"
+             class="League\Tactician\Logger\Formatter\ClassNameFormatter"/>
+
+    <!-- tactician.logger.formatter.class_properties -->
+    <service id="tactician.logger.formatter.class_properties"
+             class="League\Tactician\Logger\Formatter\ClassPropertiesFormatter"/>
+
+    <!-- tactician.middleware.logger -->
+    <service id="tactician.middleware.logger"
+             class="League\Tactician\Logger\LoggerMiddleware">
+      <argument type="service" id="tactician.logger.formatter"/>
+      <argument type="service" id="logger"/>
+      <argument>%tactician.logger.level.command_received%</argument>
+      <argument>%tactician.logger.level.command_handled%</argument>
+      <argument>%tactician.logger.level.command_failed%</argument>
+    </service>
+
+  </services>
 </container>
