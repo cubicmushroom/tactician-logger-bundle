@@ -29,9 +29,9 @@
              class="League\Tactician\Logger\LoggerMiddleware">
       <argument type="service" id="tactician.logger.formatter"/>
       <argument type="service" id="logger"/>
-      <argument>%tactician.logger.level.command_received%</argument>
-      <argument>%tactician.logger.level.command_handled%</argument>
-      <argument>%tactician.logger.level.command_failed%</argument>
+      <argument>%tactician.middleware.logger.level.command_received%</argument>
+      <argument>%tactician.middleware.logger.level.command_handled%</argument>
+      <argument>%tactician.middleware.logger.level.command_failed%</argument>
     </service>
 
   </services>
