@@ -1,0 +1,23 @@
+{
+  "name"             : "cubicmushroom/tactician-logger-bundle",
+  "description"      : "Symfony bundle to add The League's Tactician logger",
+  "type"             : "library",
+  "license"          : "MIT",
+  "authors"          : [
+    {
+      "name" : "Toby Griffiths",
+      "email": "toby@cubicmushroom.co.uk"
+    }
+  ],
+  "require"          : {
+    "php"                     : ">=5.5",
+    "league/tactician-bundle" : "^1.0@dev",
+    "symfony/framework-bundle": "~2.3",
+    "league/tactician-logger": "^0.3.0"
+  },
+  "autoload":{
+    "psr-4": {
+      "League\\Tactician\\Bundle\\TacticianLoggerBundle\\": "src/"
+    }
+  }
+}
